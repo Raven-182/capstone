@@ -17,6 +17,7 @@ function MeetingSummary({ meeting }) {
 
   return (
     <div className="meeting-summary">
+      <h4>Meeting Summary</h4>
       <div className="tab-buttons">
         <button
           className={activeTab === 'agenda' ? 'active' : ''}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Transcript.css'; // Import CSS file
+import './Transcript.css';
 
 class Transcript extends Component {
   constructor(props) {
@@ -10,26 +10,40 @@ class Transcript extends Component {
   }
 
   downloadTranscript = () => {
-    // Create a blob containing the transcript text
     const transcriptBlob = new Blob([this.state.transcriptText], { type: 'text/plain' });
-    // Create a link element to trigger the download
     const downloadLink = document.createElement('a');
     downloadLink.href = URL.createObjectURL(transcriptBlob);
     downloadLink.download = 'transcript.txt';
-    // Trigger the download
     downloadLink.click();
   };
 
+  copyTranscriptToClipboard = () => {
+    navigator.clipboard.writeText(this.state.transcriptText)
+      .then(() => {
+        alert('Transcript copied to clipboard!');
+      })
+      .catch((error) => {
+        console.error('Failed to copy transcript: ', error);
+      });
+  };
+
   render() {
+    const transcriptLines = this.state.transcriptText.split('\n');
+
     return (
       <div className="transcript-container">
-        <div>
-          <h5>Transcript</h5>
-          <p className="transcript-text">{this.state.transcriptText}</p>
+        <h5>Transcript</h5>
+        <div className="transcript-text">
+          {transcriptLines.map((line, index) => (
+            <p key={index}>{line}</p>
+          ))}
         </div>
-        <div>
-          <button className="transcript-download-button" onClick={this.downloadTranscript}>
+        <div className="button-container">
+          <button onClick={this.downloadTranscript}>
             Download Transcript
+          </button>
+          <button onClick={this.copyTranscriptToClipboard}>
+            Copy Transcript
           </button>
         </div>
       </div>

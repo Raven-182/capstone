@@ -7,6 +7,7 @@ import Meetings from './components/pages/Meetings.js';
 import Calendars from './components/pages/Calendars.js';
 import Journal from './components/pages/Journal.js';
 import SignUp from './components/pages/SignUp.js';
+import MeetingsDetails from './components/pages/MeetingsDetails.js';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/notes" exact Component={Meetings}/>
           <Route path="/journals" exact Component={Journal}/>
           <Route path="/sign-up" exact Component={SignUp}/>
+          <Route path="/meetingsdetails" exact Component={MeetingsDetails}/>
         </Routes>
       </Router>
     
