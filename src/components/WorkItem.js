@@ -3,6 +3,7 @@ import React from "react";
 const WorkItem = ({ item, createdAt }) => {
   const addToCalendar = () => {
     console.log("Add to calendar:", item);
+    window.open('https://teams.microsoft.com/calendar', '_blank');
   };
 
   return (
